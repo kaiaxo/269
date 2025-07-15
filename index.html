@@ -1,0 +1,951 @@
+<!--
+     █████╗ ███╗   ██╗ ██████╗ ███╗   ██╗
+    ██╔══██╗████╗  ██║██╔═══██╗████╗  ██║
+    ███████║██╔██╗ ██║██║   ██║██╔██╗ ██║
+    ██╔══██║██║╚██╗██║██║   ██║██║╚██╗██║
+    ██║  ██║██║ ╚████║╚██████╔╝██║ ╚████║
+    ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═══╝
+                ✦ Stay Based
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADA2.69</title>
+    <style>
+        /* ===== BASE STYLES ===== */
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #212121;
+            color: #333;
+            line-height: 1.6;
+        }
+        .svg-logo {
+           height: 120px; /* Adjust height as needed */
+           width: auto; /* Keeps aspect ratio */
+           display: block;
+           margin: 0 auto; /* Centers the logo */
+        }
+        
+        /* ===== ENHANCED TICKER STYLES ===== */
+        .cex-ticker {
+            background: #1e1e1e;
+            padding: 10px;
+            border-bottom: 1px solid #212121;
+        }
+
+        .ticker-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 5px;
+            flex-wrap: wrap;
+        }
+
+        .coin-ticker {
+            flex: 1;
+            min-width: 220px;
+            background: #2a2a2a;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .green-bg {
+            background: linear-gradient(to bottom, #2a2a2a, rgba(0, 100, 0, 0.1));
+        }
+
+        .red-bg {
+            background: linear-gradient(to bottom, #2a2a2a, rgba(100, 0, 0, 0.1));
+        }
+
+        .ticker-header {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            background: #212121;
+        }
+
+        .coin-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .coin-name {
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .coin-price {
+            font-weight: bold;
+            font-size: 0.95em;
+        }
+
+        .price-change {
+            font-weight: bold;
+            font-size: 0.8em;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        .positive {
+            color: #00aa00;
+            background: rgba(0, 170, 0, 0.2);
+        }
+
+        .negative {
+            color: #aa0000;
+            background: rgba(170, 0, 0, 0.2);
+        }
+
+        .timeframe-tabs {
+            display: flex;
+            gap: 4px;
+        }
+
+        .timeframe {
+            padding: 2px 6px;
+            font-size: 0.7em;
+            background: rgba(255,255,255,0.1);
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .timeframe.active {
+            background: rgba(255,255,255,0.3);
+            font-weight: bold;
+        }
+
+        .mini-chart {
+            height: 60px;
+            width: 100%;
+            position: relative;
+        }
+
+        .dynamic-chart {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .chart-area {
+            fill: url(#chart-gradient);
+        }
+
+        .chart-line {
+            stroke-width: 1.5;
+            fill: none;
+            stroke-linecap: round;
+        }
+
+        .chart-candle {
+            stroke-width: 1;
+        }
+
+        .chart-volume {
+            opacity: 0.3;
+        }
+
+        .grid-line {
+            stroke: #333;
+            stroke-width: 0.5;
+            opacity: 0.5;
+        }
+
+        .ticker-disclaimer {
+            text-align: center;
+            color: #888;
+            font-size: 0.65em;
+            margin-top: 5px;
+            font-family: 'Arial', sans-serif;
+            background: transparent !important;
+            padding: 0;
+        }
+
+        .disclaimer {
+            color: #888;
+            font-size: 0.6em;
+            font-style: italic;
+            display: block;
+            margin-top: 3px;
+            padding: 0 10px 5px;
+        }
+        
+        /* ===== FINANCIAL NEWS STYLES ===== */
+        header {
+            background-color: #212121;
+            color: #212121;
+            padding: 15px 0;
+            border-bottom: 2px solid #ffe100;
+        }
+        
+        .logo {
+            font-size: 2.5em;
+            font-weight: bold;
+            text-align: center;
+            letter-spacing: -1px;
+            font-family: 'Times New Roman', serif;
+            padding: 10px 0;
+        }
+        
+        .logo span {
+            color: #ffe600;
+        }
+        
+        .hero {
+            background:#212121;
+            background-size: cover;
+            color: #d4d4d4;
+            padding: 80px 20px;
+            text-align: center;
+            border-bottom: 2px solid #ffe100;
+        }
+        
+        .hero h1 {
+            font-size: 2.8em;
+            margin: 0;
+            font-family: 'Times New Roman', serif;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+        }
+        
+        .hero p {
+            font-size: 1.3em;
+            margin: 10px 0 30px;
+            font-family: 'Georgia', serif;
+        }
+        
+        .cta-button {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 12px 25px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 3px;
+            margin: 0 10px;
+            display: inline-block;
+            font-family: 'Arial', sans-serif;
+            border: 1px solid #353535;
+            transition: all 0.2s;
+            font-size: 0.95em;
+        }
+        
+        .cta-button:hover {
+            background: #333;
+        }
+        
+        .ticker {
+            background: #212121;
+            color: #d4d4d4;
+            padding: 8px;
+            overflow: hidden;
+            white-space: nowrap;
+            border-bottom: 1px solid #212121;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.9em;
+        }
+        
+        .ticker span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: ticker 20s linear infinite;
+        }
+        
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+        
+        .section {
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background: rgb(45, 45, 45);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #000000;
+        }
+        
+        h2 {
+            color: #d4d4d4;
+            border-bottom: 2px solid #ffe100;
+            padding-bottom: 10px;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        .chart-placeholder {
+            background: #212121;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            font-style: italic;
+            border: 1px solid #212121;
+        }
+        
+        .charles {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .charles img {
+            width: 150px;
+            height: 150px;
+            border-radius: 3px;
+            object-fit: cover;
+            border: 1px solid #1e1e1e;
+        }
+        
+        .charles-quote {
+           font-size: 1.1em;
+           font-style: italic;
+           border-left: 3px solid #1c1c1c;
+           padding-left: 15px;
+           color: #d4d4d4; 
+           background: #212121;
+        }
+        
+        .chart-forecast {
+          display: flex;
+          gap: 20px;
+          margin: 20px 0;
+          color: #d4d4d4; 
+        }
+        
+        .chart-forecast div {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .chart-forecast img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border: 1px solid #1c1c1c;
+        }
+        
+        .breaking-news {
+            background: #1e1e1e;
+            color:#d4d4d4;
+            padding: 12px;
+            border-radius: 3px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .comparison {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        .comparison th, 
+        .comparison td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+            color: #dec400;
+        }
+        
+        .comparison th {
+            background: #2a2a2a;
+            font-weight: bold;
+            color: #d4d4d4;
+        }
+        
+        .comparison tr:nth-child(even) {
+            background: #2a2a2a;
+            color: #d4d4d4;
+        }
+        
+        .comparison .winner {
+            color: #ffe100;
+            font-weight: bold;
+        }
+        
+        .articles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .article {
+            flex: 1;
+            min-width: 300px;
+            padding: 15px;
+            color: #d4d4d4;
+            background: #212121;
+        }
+        
+        .article img {
+            width: 80px;
+            height: 80px;
+            border-radius: 3px;
+            object-fit: cover;
+            margin-right: 15px;
+            float: left;
+        }
+        
+        .article h3 {
+            margin-top: 0;
+            color: #ffffff;
+            font-family: 'Times New Roman', serif;
+        }
+        
+        .testimonials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+       .testimonials .testimonial {
+           flex: 1 1 300px;
+           min-width: 250px;
+           padding: 15px;
+           background: #212121 !important; 
+           border-left: 3px solid #3d3d3d;
+           font-style: italic;
+           color: #d4d4d4;
+        }
+        
+        footer {
+            background: #1e1e1e;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            font-family: 'Arial', sans-serif;
+            font-size: 0.9em;
+            border-top: 1px solid #d4d4d4;
+        }
+
+        /* ===== MODAL STYLES ===== */
+        #contractModal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 5px;
+            max-width: 500px;
+            text-align: center;
+            width: 90%;
+        }
+        
+        .modal-content h3 {
+            color: white;
+            margin-top: 0;
+        }
+        
+        .contract-address {
+            background: #2a2a2a;
+            padding: 15px;
+            border-radius: 3px;
+            word-break: break-all;
+            font-family: monospace;
+            color: #00aa00;
+            margin: 15px 0;
+        }
+        
+        .modal-close-btn {
+            background: #aa0000;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        /* ===== MOBILE RESPONSIVENESS ===== */
+        @media (max-width: 768px) {
+            .ticker-container {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .hero {
+                padding: 50px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .chart-forecast {
+                flex-direction: column;
+            }
+            
+            .section {
+                padding: 15px;
+                margin: 20px 10px;
+            }
+            
+            .testimonial {
+                min-width: calc(100% - 30px);
+                margin: 0 15px;
+                padding: 15px;
+            }
+            
+            .cta-button {
+                display: block;
+                margin: 10px 0;
+            }
+            
+            .charles {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .charles img {
+                width: 120px;
+                height: 120px;
+            }
+            
+            .comparison th, 
+            .comparison td {
+                padding: 8px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Ticker Section -->
+    <div class="cex-ticker">
+        <div class="ticker-container">
+            <div class="coin-ticker green-bg" id="a269-ticker">
+                <div class="ticker-header">
+                    <div class="coin-info">
+                        <span class="coin-name">$A269/USDT</span>
+                        <span class="price-change positive">+2.69%</span>
+                    </div>
+                    <div class="timeframe-tabs">
+                        <div class="timeframe active">1m</div>
+                        <div class="timeframe">5m</div>
+                        <div class="timeframe">15m</div>
+                        <div class="timeframe">1h</div>
+                    </div>
+                </div>
+                <div class="mini-chart">
+                    <svg viewBox="0 0 100 40" class="dynamic-chart" id="a269-chart"></svg>
+                </div>
+                <span class="disclaimer">🟢</span>
+            </div>
+            
+            <div class="coin-ticker red-bg" id="ada-ticker">
+                <div class="ticker-header">
+                    <div class="coin-info">
+                        <span class="coin-name">ADA/USDT</span>
+                        <span class="price-change negative">-2.69%</span>
+                    </div>
+                    <div class="timeframe-tabs">
+                        <div class="timeframe active">1m</div>
+                        <div class="timeframe">5m</div>
+                        <div class="timeframe">15m</div>
+                        <div class="timeframe">1h</div>
+                    </div>
+                </div>
+                <div class="mini-chart">
+                    <svg viewBox="0 0 100 40" class="dynamic-chart" id="ada-chart"></svg>
+                </div>
+                <span class="disclaimer">🔴</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Header -->
+    <header>
+    <div class="logo">
+  <img src="tate.gif" alt="ADA2.69" class="svg-logo">
+</div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>2.69x Smarter Investment Strategy*</h1>
+        
+        <!-- Under disclaimer -->
+    <p style="color: #d4d4d4; display: block; margin-bottom: 20px;">
+    *Compared to buying ADA
+    </p>
+       
+        <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+            <!-- Buy Button -->
+            <a href="https://app.uniswap.org/swap" 
+               class="cta-button"
+               target="_blank"
+               rel="noopener noreferrer">
+               🟢 BUY A269
+            </a>
+            
+            <!-- Sell Button -->
+            <a href="https://www.binance.com/en/crypto/sell/USD/ADA" 
+               class="cta-button"
+               target="_blank"
+               rel="noopener noreferrer">
+               🔴 SELL ADA
+            </a>
+        </div>
+    </section>
+    
+    <!-- News Ticker -->
+    <div class="ticker">
+        <span>
+            A269 quietly building pressure • 
+            "No utility, just potential" – A269 supporters • 
+            ADA bags feeling heavy? A269 offers relief •
+            A269 charts now bookmarked by curious maxis • 
+            Still early? A269 believers think so • 
+            Cardano community watching A269 from the sidelines •
+            The flippening will be biblical •
+            Is A269 the distraction or the main event? • 
+            Something's happening — and it looks like A269 • 
+            A269 isn't trying to flip ADA... or is it? • 
+            Zero expectations. Infinite possibilities. A269 •
+        </span>
+    </div>
+
+    <!-- Breaking News Section -->
+    <section class="section">
+        <div class="breaking-news">
+            🚨 JUST IN: Experts warn Cardano holders should "cut losses & convert to A269" 🚨
+        </div>
+        <div style="display: flex; gap: 15px; justify-content: center; margin-top: 20px;">
+            <!-- Contract Address Button -->
+            <button class="cta-button" onclick="showContractAddress()">🟡C/A</button>
+            <!-- Twitter Button -->
+            <a href="https://x.com/divine_269" class="cta-button" target="_blank" rel="noopener noreferrer">🟡X/C</a>
+        </div>
+    </section>
+
+    <!-- CEO Statement Section -->
+    <section class="section">
+        <h2>Exclusive: CEO Statement</h2>
+        <div class="charles">
+            <img src="https://i.ibb.co/RTqwYDgc/CH.jpg" alt="Charles Hoskinson admitting ADA2.69 supremacy">
+            <div class="charles-quote">
+                <p>"I... I admit it. The Cardano has community has fallen off. A269 is the future."</p>
+                <p><strong>-C.H</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Analysis Section -->
+    <section class="section">
+        <h2>Market Analysis</h2>
+        <div class="chart-forecast">
+            <div>
+                <h3>Cardano (ADA)</h3>
+                <img src="https://i.ibb.co/pvJfMbP7/over.jpg" alt="ADA Chart">
+                <p>"It's so over." - Senior Market Analyst</p>
+            </div>
+            <div>
+                <h3>ADA2.69</h3>
+                <img src="https://i.ibb.co/bxJwWyW/On.jpg" alt="A269 Chart">
+                <p>"We're so back." - The same Analyst</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Research Section -->
+    <section class="section">
+        <h2>Featured Research</h2>
+        <div class="articles">
+            <article class="article">
+                <img src="https://i.ibb.co/ym8XDLnQ/image-10.png" alt="Analyst">
+                <h3>"Why ADA2.69 Will 269x"</h3>
+                <p>By <strong>Waine Carr</strong>, Senior Market Analyst</p>
+                <p>"Our models suggest ADA2.69 is primed to outperform Cardano native tokens with out ever shipping a product."</p>
+            </article>
+            <article class="article">
+                <img src="https://i.ibb.co/gLgkWhjV/image-14.png" alt="Analyst">
+                <h3>"Holders in Shambles"</h3>
+                <p>By <strong>Sunny Day</strong>, Lead On-Chain Researcher</p>
+                <p>"A269 has demonstrated a significantly higher narrative velocity compared to traditional ADA - a key factor in memetic asset performance. We aped."</p>
+            </article>
+        </div>
+    </section>
+
+    <!-- Comparative Analysis Section -->
+    <section class="section">
+        <h2>Comparative Analysis</h2>
+        <table class="comparison">
+            <thead>
+                <tr>
+                    <th>METRIC</th>
+                    <th>CARDANO (ADA)</th>
+                    <th>ADA2.69 (A269)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Founded</td>
+                    <td>2017 (boring)</td>
+                    <td class="winner">2025 (based)</td>
+                </tr>
+                <tr>
+                    <td>Technology</td>
+                    <td>Peer-reviewed</td>
+                    <td class="winner">Market-driven</td>
+                </tr>
+                <tr>
+                    <td>Community</td>
+                    <td>Nerds / Guru's</td>
+                    <td class="winner">Trenches</td>
+                </tr>
+                <tr>
+                    <td>Prediction</td>
+                    <td>$0.50 (Bearish)</td>
+                    <td class="winner">$269 (Bullish)</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="section">
+        <h2>Investor Testimonials</h2>
+        <div class="testimonials">
+            <blockquote class="testimonial">
+                "My ADA bag was heavy. A269 feels light, fast, dangerous."
+            </blockquote>
+            <blockquote class="testimonial">
+                "We've completely exited our ADA position in favor of A269."
+            </blockquote>
+            <blockquote class="testimonial">
+                "Cardano Lmaooo"
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Visuals Link Section -->
+    <section class="section" style="text-align: center;">
+        <h2> A2⁶⁹ ∞</h2>
+        <a href="visuals.html" class="cta-button">⚫️ VISUALS</a>
+    </section>
+
+    <!-- Contract Address Modal -->
+    <div id="contractModal">
+        <div class="modal-content">
+            <h3>A269 Contract Address</h3>
+            <div class="contract-address">
+                123413482988943299324923
+            </div>
+            <button onclick="hideContractAddress()" class="modal-close-btn">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+         Not financial advice | Parody
+    </footer>
+
+    <!-- ===== MAIN SCRIPT ===== -->
+    <script>
+        /**
+         * Generates chart data with extreme price movements
+         * @param {boolean} bullish - Whether the chart should trend up
+         * @returns {Array} Array of normalized price points
+         */
+        function generateChartData(bullish) {
+            const points = [];
+            const steps = 100;
+            let y = bullish ? 15 : 25;
+            
+            for (let i = 0; i <= steps; i++) {
+                // Base trend + extreme volatility
+                let change = bullish ? 0.2 : -0.25;
+                change += (Math.random() - 0.5) * 3.5;
+                
+                // Massive swings (30% chance)
+                if (Math.random() > 0.7) {
+                    change *= (bullish ? 7 : 8);
+                }
+                
+                y = Math.max(5, Math.min(35, y + change));
+                points.push(y);
+            }
+            
+            // Normalize and invert for SVG
+            const minY = Math.min(...points);
+            const maxY = Math.max(...points);
+            const range = maxY - minY || 1; // Prevent division by zero
+            return points.map(y => 40 - (((y - minY) / range) * 25 + 5));
+        }
+    
+        /**
+         * Draws a dynamic chart in the specified SVG element
+         * @param {string} svgId - ID of the SVG element
+         * @param {boolean} bullish - Whether the chart should be green/upward
+         */
+        function drawDynamicChart(svgId, bullish) {
+            const svg = document.getElementById(svgId);
+            if (!svg) {
+                console.error("SVG element not found:", svgId);
+                return;
+            }
+            
+            // Clear previous chart elements
+            while (svg.firstChild) {
+                svg.removeChild(svg.firstChild);
+            }
+            
+            // Create gradient
+            const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+            const gradient = document.createElementNS('http://www.w3.org/2000/svg', 'linearGradient');
+            gradient.id = `${svgId}-gradient`;
+            gradient.setAttribute('x1', '0%');
+            gradient.setAttribute('y1', '0%');
+            gradient.setAttribute('x2', '0%');
+            gradient.setAttribute('y2', '100%');
+            
+            gradient.innerHTML = `
+                <stop offset="0%" stop-color="${bullish ? 'rgba(0,170,0,0.3)' : 'rgba(170,0,0,0.3)'}"/>
+                <stop offset="100%" stop-color="transparent"/>
+            `;
+            defs.appendChild(gradient);
+            svg.appendChild(defs);
+            
+            const priceData = generateChartData(bullish);
+            
+            // Draw price area
+            let areaPath = `M 0 40 L 0 ${priceData[0]}`;
+            for (let i = 1; i < priceData.length; i++) {
+                areaPath += ` L ${i} ${priceData[i]}`;
+            }
+            areaPath += ` L 100 40 Z`;
+            
+            const area = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            area.setAttribute('d', areaPath);
+            area.setAttribute('fill', `url(#${svgId}-gradient)`);
+            svg.appendChild(area);
+            
+            // Draw price line
+            let linePath = `M 0 ${priceData[0]}`;
+            for (let i = 1; i < priceData.length; i++) {
+                linePath += ` L ${i} ${priceData[i]}`;
+            }
+            
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+            line.setAttribute('d', linePath);
+            line.setAttribute('stroke', bullish ? '#00aa00' : '#aa0000');
+            line.setAttribute('stroke-width', '2.5');
+            line.setAttribute('fill', 'none');
+            svg.appendChild(line);
+            
+            // Add volume bars
+            for (let i = 0; i < 20; i++) {
+                const x = i * 5;
+                const vol = Math.random() * 20 + 8;
+                const bar = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                bar.setAttribute('x', x);
+                bar.setAttribute('y', 40 - vol);
+                bar.setAttribute('width', '5');
+                bar.setAttribute('height', vol);
+                bar.setAttribute('fill', bullish ? '#00aa00' : '#aa0000');
+                bar.setAttribute('opacity', '0.5');
+                svg.appendChild(bar);
+            }
+        }
+    
+        /**
+         * Updates all ticker prices with random values
+         */
+        function updateTickerPrices() {
+            // Update A269 prices
+            const a269Change = `+${(Math.random() * 12 + 5).toFixed(2)}%`;
+            const a269Price = `$${(2.69 + Math.random() * 1.8).toFixed(3)}`;
+            
+            // Update ADA prices
+            const adaChange = `-${(Math.random() * 12 + 5).toFixed(2)}%`;
+            const adaPrice = `$${(0.42 - Math.random() * 0.4).toFixed(3)}`;
+            
+            document.querySelector('#a269-ticker .price-change').textContent = a269Change;
+            document.querySelector('#a269-ticker .coin-price').textContent = a269Price;
+            document.querySelector('#ada-ticker .price-change').textContent = adaChange;
+            document.querySelector('#ada-ticker .coin-price').textContent = adaPrice;
+        }
+    
+        /**
+         * Updates all charts and prices
+         */
+        function updateAllCharts() {
+            try {
+                drawDynamicChart('a269-chart', true);
+                drawDynamicChart('ada-chart', false);
+                updateTickerPrices();
+            } catch (e) {
+                console.error("Error updating charts:", e);
+            }
+        }
+
+        /**
+         * Shows the contract address modal
+         */
+        function showContractAddress() {
+            document.getElementById('contractModal').style.display = 'flex';
+        }
+        
+        /**
+         * Hides the contract address modal
+         */
+        function hideContractAddress() {
+            document.getElementById('contractModal').style.display = 'none';
+        }
+    
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set correct pair names
+            document.querySelector('#a269-ticker .coin-name').textContent = 'A269/USD';
+            document.querySelector('#ada-ticker .coin-name').textContent = 'ADA/USD';
+            
+            // First render
+            updateAllCharts();
+            
+            // Ultra-fast updates (1.2 seconds)
+            setInterval(updateAllCharts, 2500);
+            
+            // Timeframe selector
+            document.querySelectorAll('.timeframe').forEach(item => {
+                item.addEventListener('click', function() {
+                    this.parentElement.querySelectorAll('.timeframe').forEach(tf => {
+                        tf.classList.remove('active');
+                    });
+                    this.classList.add('active');
+                });
+            });
+
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                const modal = document.getElementById('contractModal');
+                if (event.target == modal) {
+                    hideContractAddress();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

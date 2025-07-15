@@ -1,0 +1,302 @@
+<!--
+     █████╗ ███╗   ██╗ ██████╗ ███╗   ██╗
+    ██╔══██╗████╗  ██║██╔═══██╗████╗  ██║
+    ███████║██╔██╗ ██║██║   ██║██╔██╗ ██║
+    ██╔══██║██║╚██╗██║██║   ██║██║╚██╗██║
+    ██║  ██║██║ ╚████║╚██████╔╝██║ ╚████║
+    ╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═══╝
+                ✦ Stay Based
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADA2.69 Visuals</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e1e1e;
+            color: white;
+            line-height: 1.6;
+        }
+        .header {
+            background-color: #1e1e1e;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 4px solid #ffea00;
+        }
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+            letter-spacing: -1px;
+            font-family: 'Times New Roman', serif;
+        }
+        .logo span {
+            color: #aa0000;
+        }
+        .gallery {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .meme-card {
+            background: #2a2a2a;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+        .meme-card:hover {
+            transform: scale(1.03);
+        }
+        .meme-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .meme-title {
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            border-top: 1px solid #333;
+            margin-bottom: 0;
+        }
+        .back-btn {
+            display: block;
+            text-align: center;
+            margin: 30px auto;
+            padding: 12px 25px;
+            background: #121212;
+            color: white;
+            text-decoration: none;
+            border-radius: 3px;
+            max-width: 200px;
+            font-weight: bold;
+        }
+
+        /* Action button styles */
+        .meme-actions {
+            display: flex;
+            gap: 10px;
+            padding: 0 15px 15px;
+            justify-content: center;
+        }
+        .meme-btn {
+            padding: 8px 12px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+        }
+        .download-btn {
+            background: #111111;
+            color: white;
+        }
+        .share-btn {
+            background: #111111;
+            color: white;
+        }
+        .meme-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+                padding: 10px;
+            }
+            .meme-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+            .meme-btn {
+                width: 100%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo">A2⁶⁹∞</h1>
+    </header>
+    
+    <main class="gallery">
+        <!-- Meme 1 -->
+        <article class="meme-card">
+            <img src="https://i.ibb.co/WNhg9BMP/im1.jpg" alt="A269 Meme 1">
+            <h3 class="meme-title">𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</h3>
+            <div class="meme-actions">
+                <button class="meme-btn download-btn" onclick="downloadImage('https://i.ibb.co/WNhg9BMP/im1.jpg', 'A2691.png')">🟡 Download</button>
+                <button class="meme-btn share-btn" onclick="shareToTwitter('∞', 'A2⁶⁹')">🟡 Share</button>
+            </div>
+        </article>
+        
+        <!-- Meme 2 -->
+        <article class="meme-card">
+            <img src="https://i.ibb.co/Df6Xm05s/im2.jpg" alt="A269 Meme 2">
+            <h3 class="meme-title">𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</h3>
+            <div class="meme-actions">
+                <button class="meme-btn download-btn" onclick="downloadImage('https://i.ibb.co/Df6Xm05s/im2.jpg', 'A2692')">🟡 Download</button>
+                <button class="meme-btn share-btn" onclick="shareToTwitter('∞', 'A2⁶⁹')">🟡 Share</button>
+            </div>
+        </article>
+        
+        <!-- Meme 3 -->
+        <article class="meme-card">
+            <img src="https://i.ibb.co/1JnqrVyr/im3.jpg" alt="A269 Meme 3">
+            <h3 class="meme-title">𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</h3>
+            <div class="meme-actions">
+                <button class="meme-btn download-btn" onclick="downloadImage('https://i.ibb.co/1JnqrVyr/im3.jpg', 'A2693')">🟡 Download</button>
+                <button class="meme-btn share-btn" onclick="shareToTwitter('∞', 'A2⁶⁹')">🟡 Share</button>
+            </div>
+        </article>
+        
+        <!-- Meme 4 -->
+        <article class="meme-card">
+            <img src="https://i.ibb.co/67t8TMpd/im4.jpg" alt="A269 Meme 4">
+            <h3 class="meme-title">𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</h3>
+            <div class="meme-actions">
+                <button class="meme-btn download-btn" onclick="downloadImage('https://i.ibb.co/67t8TMpd/im4.jpg', 'A2694')">🟡 Download</button>
+                <button class="meme-btn share-btn" onclick="shareToTwitter('∞', 'A2⁶⁹')">🟡 Share</button>
+            </div>
+        </article>
+    
+        <!-- Meme 5 -->
+        <article class="meme-card">
+            <img src="https://i.ibb.co/JwSQn06Q/im5.jpg" alt="A269 Meme 5">
+            <h3 class="meme-title">𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</h3>
+            <div class="meme-actions">
+                <button class="meme-btn download-btn" onclick="downloadImage('https://i.ibb.co/JwSQn06Q/im5.jpg', 'A2695')">🟡 Download</button>
+                <button class="meme-btn share-btn" onclick="shareToTwitter('∞', 'A2⁶⁹')">🟡 Share</button>
+            </div>
+        </article>
+
+        <!-- Meme 6 -->
+        <article class="meme-card">
+            <img src="https://i.ibb.co/fGM0Zp9W/im6.jpg" alt="A269 Meme 6">
+            <h3 class="meme-title">𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</h3>
+            <div class="meme-actions">
+                <button class="meme-btn download-btn" onclick="downloadImage('https://i.ibb.co/fGM0Zp9W/im6.jpg', 'A2696')">🟡 Download</button>
+                <button class="meme-btn share-btn" onclick="shareToTwitter('∞', 'A2⁶⁹')">🟡 Share</button>
+            </div>
+        </article>
+
+        <!-- Meme 7 -->
+        <article class="meme-card">
+            <img src="https://i.ibb.co/gbxHVV7d/im7.jpg" alt="A269 Meme 7">
+            <h3 class="meme-title">𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</h3>
+            <div class="meme-actions">
+                <button class="meme-btn download-btn" onclick="downloadImage('https://i.ibb.co/gbxHVV7d/im7.jpg', 'A2697')">🟡 Download</button>
+                <button class="meme-btn share-btn" onclick="shareToTwitter('∞', 'A2⁶⁹')">🟡 Share</button>
+            </div>
+        </article>
+
+        <!-- Meme 8 -->
+        <article class="meme-card">
+            <img src="https://i.ibb.co/fdh7mH3q/im8.jpg" alt="A269 Meme 8">
+            <h3 class="meme-title">𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</h3>
+            <div class="meme-actions">
+                <button class="meme-btn download-btn" onclick="downloadImage('https://i.ibb.co/fdh7mH3q/im8.jpg', 'A2698')">🟡 Download</button>
+                <button class="meme-btn share-btn" onclick="shareToTwitter('∞', 'A2⁶⁹')">🟡 Share</button>
+            </div>
+        </article>
+
+        <!-- Meme 9 -->
+        <article class="meme-card">
+            <img src="https://i.ibb.co/4nbZLWF0/im9.jpg" alt="A269 Meme 9">
+            <h3 class="meme-title">𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</h3>
+            <div class="meme-actions">
+                <button class="meme-btn download-btn" onclick="downloadImage('https://i.ibb.co/4nbZLWF0/im9.jpg', 'A2699')">🟡 Download</button>
+                <button class="meme-btn share-btn" onclick="shareToTwitter('∞', 'A2⁶⁹')">🟡 Share</button>
+            </div>
+        </article>
+
+        <!-- Meme 10 -->
+        <article class="meme-card">
+            <img src="https://i.ibb.co/zW6gsCkn/im10.jpg" alt="A269 Meme 10">
+            <h3 class="meme-title">𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</h3>
+            <div class="meme-actions">
+                <button class="meme-btn download-btn" onclick="downloadImage('https://i.ibb.co/zW6gsCkn/im10.jpg', 'A2700')">🟡 Download</button>
+                <button class="meme-btn share-btn" onclick="shareToTwitter('∞', 'A2⁶⁹')">🟡 Share</button>
+            </div>
+        </article>
+
+                <!-- Meme 11 -->
+        <article class="meme-card">
+            <img src="https://i.ibb.co/9mqtXG8B/im11.jpg" alt="A269 Meme 11">
+            <h3 class="meme-title">𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</h3>
+            <div class="meme-actions">
+                <button class="meme-btn download-btn" onclick="downloadImage('https://i.ibb.co/9mqtXG8B/im11.jpg', 'A2701')">🟡 Download</button>
+                <button class="meme-btn share-btn" onclick="shareToTwitter('∞', 'A2⁶⁹')">🟡 Share</button>
+            </div>
+        </article>
+
+                        <!-- Meme 12 -->
+        <article class="meme-card">
+            <img src="https://i.ibb.co/bMXbxxXL/im12.jpg" alt="A269 Meme 12">
+            <h3 class="meme-title">𝄃𝄃𝄂𝄂𝄀𝄁𝄃𝄂𝄂𝄃</h3>
+            <div class="meme-actions">
+                <button class="meme-btn download-btn" onclick="downloadImage('https://i.ibb.co/bMXbxxXL/im12.jpg', 'A2702')">🟡 Download</button>
+                <button class="meme-btn share-btn" onclick="shareToTwitter('∞', 'A2⁶⁹')">🟡 Share</button>
+            </div>
+        </article>
+    </main>
+    
+    <footer>
+        <a href="index.html" class="back-btn">← Back</a>
+    </footer>
+
+    <script>
+        /**
+         * Downloads an image from the specified URL
+         * @param {string} url - The image URL to download
+         * @param {string} filename - The name to save the file as
+         */
+        function downloadImage(url, filename) {
+            fetch(url)
+                .then(response => response.blob())
+                .then(blob => {
+                    const blobUrl = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = blobUrl;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(blobUrl);
+                })
+                .catch(() => {
+                    // Fallback if fetch fails
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = filename;
+                    a.target = '_blank';
+                    document.body.appendChild(a);
+                    a.click();
+                });
+        }
+
+        /**
+         * Shares content to Twitter
+         * @param {string} imageUrl - The URL of the image to share
+         * @param {string} text - The text to include in the tweet
+         */
+        function shareToTwitter(imageUrl, text) {
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(imageUrl)}`;
+            window.open(twitterUrl, '_blank', 'width=550,height=420');
+        }
+    </script>
+</body>
+</html>
