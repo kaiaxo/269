@@ -577,7 +577,7 @@
     <!-- Main Header -->
     <header>
     <div class="logo">
- <img src="https://i.ibb.co/GfT7qNX9/log11.png" alt="ADA2.69" class="svg-logo">
+  <img src="https://i.ibb.co/GfT7qNX9/log11.png" alt="ADA2.69" class="svg-logo">
 </div>
     </header>
     
@@ -797,13 +797,13 @@
         }
     
         /**
-         * Draws a dynamic chart in the specified  element
-         * @param {string} Id - ID of the  element
+         * Draws a dynamic chart in the specified SVG element
+         * @param {string} svgId - ID of the SVG element
          * @param {boolean} bullish - Whether the chart should be green/upward
          */
-        function drawDynamicChart(Id, bullish) {
-            const  = document.getElementById(Id);
-            if (!) {
+        function drawDynamicChart(svgId, bullish) {
+            const svg = document.getElementById(svgId);
+            if (!svg) {
                 console.error("SVG element not found:", svgId);
                 return;
             }
